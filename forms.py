@@ -17,7 +17,7 @@ class SignupForm(Form):
         username = User.query.filter_by(username=self.username.data.lower()).first()
         email = User.query.filter_by(email=self.email.data.lower()).first()
         if username:
-            self.email.errors.append("That email is already taken")
+            self.username.errors.append("That username is already taken")
             return False
         elif email:
             self.email.errors.append("That email is already taken")
