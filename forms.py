@@ -1,11 +1,13 @@
-from wtforms import Form, validators, StringField, PasswordField
+from wtforms import Form, validators, StringField, PasswordField, SubmitField
 from models import db, User
+import logging
 
 
 class SignupForm(Form):
     username = StringField('Username', [validators.required(), validators.Length(min=3, max=30)])
     password = PasswordField('Password', [validators.required(), validators.Length(min=6, max=30)])
     email = StringField('Email', [validators.required(), validators.Length(min=6, max=35), validators.Email()])
+    submit = SubmitField("Create account")
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)

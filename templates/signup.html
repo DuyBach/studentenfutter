@@ -1,5 +1,32 @@
 {% extends "main.html" %}
 
 {% block content %}
-    Hello World!
+  <h2>Sign up</h2>
+
+  {% for message in form.username.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+  {% for message in form.password.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+  {% for message in form.email.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+  <form action="{{ url_for('signup') }}" method="POST">
+    <input name=_csrf_token type=hidden value="{{ csrf_token() }}">
+
+    {{ form.username.label }}
+    {{ form.username }}
+
+    {{ form.password.label }}
+    {{ form.password }}
+
+    {{ form.email.label }}
+    {{ form.email }}
+
+    {{ form.submit }}
+  </form>
 {% endblock %}
