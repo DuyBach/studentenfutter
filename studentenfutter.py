@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, redirect
 from flask_login import LoginManager
 from models import db, User
+from forms import SignupForm
 
 app = Flask(__name__)
 
@@ -18,7 +19,19 @@ def index():
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    pass
+    form = SignupForm()
+
+    if request.method == 'POST':
+        if not form.validate():
+            return render_template('signup.html', form=form)
+        else:
+            # CREATE
+            user = User(username=form.username.data, password=form.password.data, email=form.email.data)
+            # SIGN IN
+            # REDIRECT
+            return redirect(url_for(index))
+    elif request.method == 'GET':
+        return render_template('signup.html', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
