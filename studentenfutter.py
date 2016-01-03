@@ -25,8 +25,9 @@ def index():
 def signup():
     form = SignupForm()
 
+    app.logger.info(request.data)
+
     if request.method == 'POST':
-        app.logger.info(request.data)
         if not form.validate():
             return render_template('signup.html', form=form)
         else:

@@ -1,6 +1,5 @@
 from wtforms import Form, validators, StringField, PasswordField, SubmitField
 from models import db, User
-import logging
 
 
 class SignupForm(Form):
