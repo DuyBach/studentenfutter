@@ -27,6 +27,11 @@ class User(db.Model):
     def get_id(self):
         return self.id.decode()
 
+    def __init__(self, username=None, password=None, email=None):
+        self.username = username
+        self.password = password
+        self.email = email
+
     def __repr__(self):
         return '<User %r>' % self.username
 

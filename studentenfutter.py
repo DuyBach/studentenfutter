@@ -16,7 +16,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/signup')
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
     pass
 
