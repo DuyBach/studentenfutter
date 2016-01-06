@@ -6,6 +6,10 @@ from .forms import SignupForm
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/foodshops')
+def foodshops():
+    return render_template('foodshops.html')
     
 
 @app.route('/signup', methods=['GET', 'POST'])
