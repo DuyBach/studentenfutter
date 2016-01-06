@@ -1,5 +1,17 @@
 {% extends "main.html" %}
 
 {% block content %}
-    Hello World!
+    <div class="container">
+    <h1 class="cover-heading">Alle Restaurants, in deiner Nähe</h1>
+    <span class="help-block">Finde jetzt heraus welche guten Restaurants in deiner Nähe sind und bewerte sie!</span>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+        <div class="col-xs-5">
+            <input class="form-control input-lg" id="inputlg" type="text" placeholder="Gib Deine aktuelle Adresse ein">
+        <a href="/foodshops" class="btn btn-success">Restaurants finden!</a>
+        </div>
+
+        </div>
+    </form>
+</div>
 {% endblock %}
