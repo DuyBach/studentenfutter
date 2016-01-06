@@ -1,7 +1,7 @@
+from app import db, models
 from flask import render_template, request, redirect, url_for
 from app import app
 from .forms import SignupForm
-
 
 @app.route('/')
 def index():
@@ -19,9 +19,11 @@ def signup():
     if request.method == 'POST':
         if form.validate():
             # CREATE
+            user = models.User(username=form.username.data, password=form.password.data, email=form.email.data)
+            db.session.add(user)
+            db.session.commit()
             # SIGN IN
             # REDIRECT
-            # user = User(username=form.username.data, password=form.password.data, email=form.email.data)
             # app.logger.info(user)
             return redirect(url_for('index'))
         else:
