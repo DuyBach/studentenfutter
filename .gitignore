@@ -3,3 +3,6 @@
 
 #Ignore compiled python files
 *.pyc
+
+# Ignore db Folder
+db_repository/
