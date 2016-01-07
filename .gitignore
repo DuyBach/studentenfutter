@@ -1,5 +1,8 @@
-#Ignore PyCharm Project
+# Ignore PyCharm Project
 .idea/
 
-#Ignore compiled python files
+# Ignore compiled python files
 *.pyc
+
+# Ignore db Folder
+db_repository/
