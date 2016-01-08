@@ -3,7 +3,7 @@
 
 #Ignore compiled python files
 *.pyc
-__pycache_/
+__pycache__/
 
 # Ignore db Folder
 db_repository/
