@@ -1,5 +1,23 @@
 {% extends "main.html" %}
 
 {% block content %}
-    Hello World!
+  <h2>Login</h2>
+
+  {% for message in form.username.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+  {% for message in form.password.errors %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+  <form action="{{ url_for('login') }}" method="post">
+    {{ form.username.label }}
+    {{ form.username }}
+
+    {{ form.password.label }}
+    {{ form.password }}
+
+    {{ form.submit }}
+  </form>
 {% endblock %}
