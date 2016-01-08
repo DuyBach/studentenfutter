@@ -25,3 +25,28 @@ class SignupForm(Form):
             return False
         else:
             return True
+
+
+class LoginForm(Form):
+    username = StringField('Username', [validators.required(), validators.regexp(r'^[a-zA-Z0-9]{3,30}$')])
+    password = PasswordField('Password', [validators.required()])
+    submit = SubmitField("Login")
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+        
+    def validate(self):
+        if not Form.validate(self):
+            return False
+
+        user = models.User.query.filter_by(username=self.username.data.lower()).first()
+        
+        if user is None:
+            self.username.errors.append('Unknown username')
+            return False
+            
+        if not user.check_password(self.password.data):
+            self.password.errors.append('Invalid password')
+            return False
+        
+        return True

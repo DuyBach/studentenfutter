@@ -24,7 +24,13 @@ class User(db.Model):
         return False
 
     def get_id(self):
-        return self.id.decode()
+        return self.id
+        
+    def check_password(self, password):
+        if password == self.password:
+            return True
+
+        return False
 
     def __init__(self, username=None, password=None, email=None):
         self.username = username
