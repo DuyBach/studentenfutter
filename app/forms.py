@@ -1,6 +1,5 @@
 from wtforms import Form, validators, StringField, PasswordField, SubmitField
 from app import db, models
-from .views import g
 
 
 class SignupForm(Form):
@@ -29,19 +28,18 @@ class SignupForm(Form):
 
 
 class LoginForm(Form):
-    username = StringField('Username', [validators.required()])
+    username = StringField('Username', [validators.required(), validators.regexp(r'^[a-zA-Z0-9]{3,30}$')])
     password = PasswordField('Password', [validators.required()])
-    
+    submit = SubmitField("Login")
+
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)
-        # gGGGG????????
-        self.g.user = None
         
     def validate(self):
         if not Form.validate(self):
             return False
-            
-        user = User.query.filter_by(username=self.username.data.lower()).first()
+
+        user = models.User.query.filter_by(username=self.username.data.lower()).first()
         
         if user is None:
             self.username.errors.append('Unknown username')
@@ -50,7 +48,5 @@ class LoginForm(Form):
         if not user.check_password(self.password.data):
             self.password.errors.append('Invalid password')
             return False
-        # gGGGGGGGGGGGGGGG??????????ß
-        self.g.user = user
         
         return True
