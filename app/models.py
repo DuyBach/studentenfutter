@@ -46,6 +46,11 @@ class Foodshop(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
+    # location = create new address
+    # picture = images saved unter static/foodshop/*
+    # price_range = $ under 5€ $$ under 9€ $$$ big money maker
+    # rating = 1-5 stars with half
+    # commentes = relationship
 
     def __init__(self, name=None):
         self.name = name
