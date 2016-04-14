@@ -14,14 +14,17 @@ def index():
         return render_template('index.html')
 
 
-@app.route('/foodshops/<int:plz>')
-def foodshops(plz):
-    if not plz:
+@app.route('/foodshops/<adress>')
+def foodshops(adress):
+    if not adress:
         return render_template('index.html')
 
-    # get list of foodshops with plz
+    # parser
+    logging.warning(adress)
+    adress = adress.split()
+    logging.warning(adress)
 
-    return render_template('foodshops.html', plz=plz)
+    return render_template('foodshops.html', adress=adress)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
