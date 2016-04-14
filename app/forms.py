@@ -28,8 +28,8 @@ class SignupForm(Form):
 
 
 class LoginForm(Form):
-    username = StringField('Username', [validators.required(), validators.regexp(r'^[a-zA-Z0-9]{3,30}$')])
-    password = PasswordField('Password', [validators.required()])
+    username = StringField('Username', [validators.required(), validators.Length(min=3, max=30)])
+    password = PasswordField('Password', [validators.required(), validators.Length(min=6, max=30)])
     submit = SubmitField("Login")
 
     def __init__(self, *args, **kwargs):
