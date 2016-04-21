@@ -16,14 +16,6 @@ def index():
 
 @app.route('/foodshops/<adress>')
 def foodshops(adress):
-    if not adress:
-        return render_template('index.html')
-
-    # parser
-    logging.warning(adress)
-    adress = adress.split()
-    logging.warning(adress)
-
     return render_template('foodshops.html', adress=adress)
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -66,6 +58,12 @@ def login():
             return render_template('login.html', form=form)
     elif request.method == 'GET':
         return render_template('login.html', form=form)
+
+
+@app.route('/cms')
+def cms():
+    return render_template()
+
 
 @app.route('/logout')
 def logout():
